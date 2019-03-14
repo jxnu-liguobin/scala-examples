@@ -1,7 +1,7 @@
 ### Scala with Play framework Examples
 
+A Default Play Project's Structure
 
-### A Default Play Project's Structure
 ```
 +---app                         Play Web 应用全部代码所在目录
 
