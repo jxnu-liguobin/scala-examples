@@ -1,6 +1,7 @@
 package services
 
 import java.util.concurrent.atomic.AtomicInteger
+
 import javax.inject._
 
 /**
@@ -9,12 +10,12 @@ import javax.inject._
  * incremented number each time it is called.
  */
 trait Counter {
-  def nextCount(): Int
+    def nextCount(): Int
 }
 
 /**
  * This class is a concrete implementation of the [[Counter]] trait.
- * It is configured for Guice dependency injection in the [[Module]]
+ * It is configured for Guice dependency injection in the [[play.api.inject.Module]]
  * class.
  *
  * This class has a `Singleton` annotation because we need to make
@@ -23,7 +24,8 @@ trait Counter {
  * injected.
  */
 @Singleton
-class AtomicCounter extends Counter {  
-  private val atomicCounter = new AtomicInteger()
-  override def nextCount(): Int = atomicCounter.getAndIncrement()
+class AtomicCounter extends Counter {
+    private val atomicCounter = new AtomicInteger()
+
+    override def nextCount(): Int = atomicCounter.getAndIncrement()
 }
