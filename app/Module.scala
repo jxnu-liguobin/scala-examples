@@ -16,12 +16,12 @@ import services.{ApplicationTimer, AtomicCounter, Counter}
 class Module extends AbstractModule {
 
     override def configure() = {
-        // Use the system clock as the default implementation of Clock
+
+        //使用的系统时钟作为默认的执行点
         bind(classOf[Clock]).toInstance(Clock.systemDefaultZone)
-        // Ask Guice to create an instance of ApplicationTimer when the
-        // application starts.
+        //告知Guice在应用启动时创建ApplicationTimer的实例
         bind(classOf[ApplicationTimer]).asEagerSingleton()
-        // Set AtomicCounter as the implementation for Counter.
+        //将atomiccounter设置为counter的实现
         bind(classOf[Counter]).to(classOf[AtomicCounter])
     }
 

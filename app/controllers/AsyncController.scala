@@ -8,30 +8,19 @@ import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future, Promise}
 
 /**
- * This controller creates an `Action` that demonstrates how to write
- * simple asynchronous code in a controller. It uses a timer to
- * asynchronously delay sending a response for 1 second.
+ * 异步响应
  *
- * @param cc          standard controller components
- * @param actorSystem We need the `ActorSystem`'s `Scheduler` to
- *                    run code after a delay.
- * @param exec        We need an `ExecutionContext` to execute our
- *                    asynchronous code.  When rendering content, you should use Play's
- *                    default execution context, which is dependency injected.  If you are
- *                    using blocking operations, such as database or network access, then you should
- *                    use a different custom execution context that has a thread pool configured for
- *                    a blocking API.
+ * @param cc          标准控制器组件
+ * @param actorSystem 延迟需要使用
+ * @param exec        需要ExecutionContext来执行异步代码，根据需要修改依赖注入
  */
 @Singleton
 class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc) {
 
     /**
-     * Creates an Action that returns a plain text message after a delay
-     * of 1 second.
+     * 延迟后返回纯文本消息
      *
-     * The configuration in the `routes` file means that this method
-     * will be called when the application receives a `GET` request with
-     * a path of `/message`.
+     * routes”文件中的配置意味着此方法，将在应用程序收到“get”请求调用且请求路径是“/message”的路径时被调用
      */
     def message = Action.async {
         getFutureMessage(1.second).map { msg => Ok(msg) }
@@ -39,9 +28,10 @@ class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSyst
 
     private def getFutureMessage(delayTime: FiniteDuration): Future[String] = {
         val promise: Promise[String] = Promise[String]()
+        //这是是柯里化函数
         actorSystem.scheduler.scheduleOnce(delayTime) {
-            promise.success("Hi!")
-        }(actorSystem.dispatcher) // run scheduled tasks using the actor system's dispatcher
+            promise.success("Hello World!")
+        }(actorSystem.dispatcher) //使用Actor运行延时任务
         promise.future
     }
 

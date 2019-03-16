@@ -9,29 +9,19 @@ import play.api.inject.ApplicationLifecycle
 import scala.concurrent.Future
 
 /**
- * This class demonstrates how to run code when the
- * application starts and stops. It starts a timer when the
- * application starts. When the application stops it prints out how
- * long the application was running for.
+ * 此类演示如何在应用程序启动和停止时执行代码。它在应用程序启动时启动计时器。当应用程序停止时，它会打印出应用程序运行的时间
  *
- * This class is registered for Guice dependency injection in the
- * [[play.api.inject.Module]] class. We want the class to start when the application
- * starts, so it is registered as an "eager singleton". See the code
- * in the [[play.api.inject.Module]] class to see how this happens.
- *
- * This class needs to run code when the server stops. It uses the
- * application's [[ApplicationLifecycle]] to register a stop hook.
+ * 单例 饥汉模式
  */
 @Singleton
 class ApplicationTimer @Inject()(clock: Clock, appLifecycle: ApplicationLifecycle) {
 
-    // This code is called when the application starts.
+    // 应用程序启动时调用此代码
     private val start: Instant = clock.instant
     Logger.logger.info(s"ApplicationTimer demo: Starting application at $start.")
 
-    // When the application starts, register a stop hook with the
-    // ApplicationLifecycle object. The code inside the stop hook will
-    // be run when the application stops.
+    //当应用程序启动时，使用ApplicationLifecycle实例注册停止钩子
+    //停止钩内的代码将应用程序停止时运行
     appLifecycle.addStopHook { () =>
         val stop: Instant = clock.instant
         val runningTime: Long = stop.getEpochSecond - start.getEpochSecond
