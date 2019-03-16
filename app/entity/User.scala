@@ -4,13 +4,18 @@ import play.api.libs.json.Json
 
 /**
  * @author 梦境迷离
- * @time 2019-03-15
+ * @version 1.0, 2019-03-15
  */
 case class User(var id: Int, var name: String)
 
 object User {
-    implicit val userWrites = Json.writes[User]
-    implicit val userReads = Json.reads[User]
+
+    //隐式的Format对象
+    implicit val addressFormat = Json.format[User]
+
+    //    implicit val userWrites = Json.writes[User]
+    //    implicit val userReads = Json.reads[User]
+
 
     /**
      * 隐式转换提交的User
@@ -84,5 +89,6 @@ object User {
             users = users ::: List(user)
         }
     }
+
 
 }

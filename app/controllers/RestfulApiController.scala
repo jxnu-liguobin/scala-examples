@@ -9,7 +9,7 @@ import play.api.mvc._
  * Restful Api Controller
  *
  * @author 梦境迷离
- * @time 2019-03-15
+ * @version 1.0, 2019-03-15
  */
 @Singleton
 class RestfulApiController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
@@ -85,6 +85,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents) extends AbstractC
     }
 
     /**
+     * 请求体参数
      * /updateUser/user
      *
      * @return
