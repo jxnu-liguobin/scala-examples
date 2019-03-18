@@ -2,16 +2,45 @@ package entity
 
 import play.api.libs.json.Json
 
+import scala.util.Random
+
 /**
  * @author 梦境迷离
  * @version 1.0, 2019-03-15
  */
-case class User(var id: Int, var name: String)
+case class User(var id: Int, var name: String) {
+
+    private var password: String = _
+
+    /**
+     * 登录时使用这个构造方法
+     *
+     * @param userName
+     * @param password
+     */
+    def this(userName: String, password: String) {
+        this(new Random().nextInt(1000), userName)
+        this.password = password
+    }
+
+    /**
+     * 最全构造方法
+     *
+     * @param id
+     * @param userName
+     * @param password
+     */
+    def this(id: Int, userName: String, password: String) {
+        this(id, userName)
+        this.password = password
+
+    }
+}
 
 object User {
 
     //隐式的Format对象
-    implicit val addressFormat = Json.format[User]
+    implicit val userFormat = Json.format[User]
 
     //    implicit val userWrites = Json.writes[User]
     //    implicit val userReads = Json.reads[User]

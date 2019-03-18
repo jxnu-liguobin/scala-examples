@@ -16,7 +16,8 @@ GET           /getUserByPathParam/:userId        controllers.RestfulApiControlle
 DELETE        /deleteUser/:id                    controllers.RestfulApiController.deleteUser(id:Int)
 PUT           /updateUser/user                   controllers.RestfulApiController.updateUser
 GET           /listUser                          controllers.RestfulApiController.listUser
-
+GET           /login                             controllers.RestfulApiController.login
+POST          /doLogin                           controllers.RestfulApiController.doLogin
 
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)

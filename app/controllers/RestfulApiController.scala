@@ -2,6 +2,7 @@ package controllers
 
 import entity.User
 import javax.inject.{Inject, Singleton}
+import play.api.data.{Form, Forms}
 import play.api.libs.json.{JsError, Json}
 import play.api.mvc._
 
@@ -14,6 +15,50 @@ import play.api.mvc._
 @Singleton
 class RestfulApiController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
+
+    /**
+     * 每个request对象有它自己的Validation 对象来收集错误，这里有三种方法来定义validations;
+     *
+     * 1.在控制器方法中，直接调用控制器方法来validation 字段，你也可以访问API的play.data.validation.validation类的静态方法的一个子集。
+     *
+     * 2.添加注释的方法验证控制器的参数声明。
+     *
+     * 3.添加@Valid注释到action方法的POJO参数，并且给POJO的属性添加校验注释。
+     */
+
+    /**
+     * 显示登录页面
+     *
+     * @return
+     */
+    def login = Action {
+        Ok(views.html.login("用户登录"))
+    }
+
+    /**
+     * 模拟用户登录操作
+     *
+     * @return
+     */
+    def doLogin = Action { implicit request =>
+        val loginForm = Form(
+            Forms.tuple(
+                "userName" -> Forms.email,
+                "password" -> Forms.text(minLength = 6)
+            )
+        )
+
+        loginForm.bindFromRequest().fold(
+            //显示错误信息
+            errorForm => Ok(errorForm.errors.toString()),
+            userDate => {
+                //获取绑定成功的信息
+                val (userName, password) = userDate
+                //显示出来
+                Ok("userName=" + userName + "&password=" + password)
+            }
+        )
+    }
 
     /**
      * 无参数
