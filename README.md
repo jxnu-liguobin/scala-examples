@@ -1,4 +1,4 @@
-### Scala with Play framework Examples
+### Play framework Examples with Scala
 
 A Default Play Project's Structure
 
