@@ -39,7 +39,9 @@ case class User(var id: Int, var name: String) {
 
 object User {
 
-    //隐式的Format对象
+    //Format 宏的展开是在编译期执行的，一方面提升了类型的安全性，另一方，区别于 Java 的反射机制，Format 宏是在编译器生成编解码器，在运行期有更高的执行效率
+    //将隐式 Format 对象导入到当前作用域，便可以自由地在 JsObject 和 Case Class 之间进行互转，但定义在伴生对象中时无需导入
+    //开发时可在包对象中创建隐式的 Format 对象，避免为每个case class 创建伴生对象
     implicit val userFormat = Json.format[User]
 
     //    implicit val userWrites = Json.writes[User]
