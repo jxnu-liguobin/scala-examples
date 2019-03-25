@@ -3,6 +3,7 @@ package controllers
 import entity.User
 import javax.inject.{Inject, Singleton}
 import play.api.data.{Form, Forms}
+import play.api.i18n._
 import play.api.libs.json.{JsError, Json}
 import play.api.mvc._
 
@@ -13,8 +14,13 @@ import play.api.mvc._
  * @version 1.0, 2019-03-15
  */
 @Singleton
-class RestfulApiController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+class RestfulApiController @Inject()(cc: ControllerComponents, langs: Langs, messagesApi: MessagesApi) extends AbstractController(cc) {
 
+
+    val lang = langs.availables.head
+    //使用errorsAsJson所需要的隐式provider参数
+    //注入Lang实例失败，Lang需要一个构造参数，改为注入langs，获取可用的一个
+    implicit val messages: Messages = MessagesImpl(lang, messagesApi)
 
     /**
      * 每个request对象有它自己的Validation 对象来收集错误，这里有三种方法来定义validations;
@@ -52,7 +58,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents) extends AbstractC
 
         loginForm.bindFromRequest().fold(
             //显示错误信息
-            errorForm => Ok(errorForm.errors.toString()),
+            errorForm => Ok(Json.obj("status" -> "ERROR", "errors" -> errorForm.errors.toString())),
             userDate => {
                 //获取绑定成功的信息
                 val (userName, password) = userDate
@@ -79,8 +85,8 @@ class RestfulApiController @Inject()(cc: ControllerComponents) extends AbstractC
         )
 
         loginForm.bindFromRequest().fold(
-            //显示错误信息
-            errorForm => Ok(errorForm.errors.toString()),
+            //以Json格式写回客户端
+            errorForm => Ok(Json.obj("status" -> "ERROR", "errors" -> errorForm.errorsAsJson(messages))),
             userDate => {
                 //获取绑定成功的信息
                 val user: User = userDate
@@ -110,7 +116,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents) extends AbstractC
         val user = request.body.validate[User]
         user.fold(
             errors => {
-                BadRequest(Json.obj("status" -> "OK", "message" -> JsError.toJson(errors)))
+                BadRequest(Json.obj("status" -> "ERROR", "message" -> JsError.toJson(errors)))
             },
             user => {
                 User.addUser(user)
@@ -169,7 +175,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents) extends AbstractC
         val user = request.body.validate[User]
         user.fold(
             errors => {
-                BadRequest(Json.obj("status" -> "OK", "message" -> JsError.toJson(errors)))
+                BadRequest(Json.obj("status" -> "ERROR", "message" -> JsError.toJson(errors)))
             },
             user => {
                 User.updateUser(user)
