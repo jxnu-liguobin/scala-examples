@@ -38,6 +38,8 @@ class RestfulApiController @Inject()(cc: ControllerComponents) extends AbstractC
     /**
      * 模拟用户登录操作
      *
+     * 使用元组
+     *
      * @return
      */
     def doLogin = Action { implicit request =>
@@ -56,6 +58,34 @@ class RestfulApiController @Inject()(cc: ControllerComponents) extends AbstractC
                 val (userName, password) = userDate
                 //显示出来
                 Ok("userName=" + userName + "&password=" + password)
+            }
+        )
+    }
+
+
+    /**
+     * 模拟用户登录操作
+     *
+     * 使用case class 只使用id和姓名
+     *
+     * @return
+     */
+    def doLogin2 = Action { implicit request =>
+        val loginForm = Form(
+            Forms.mapping(
+                "id" -> Forms.number,
+                "name" -> Forms.text(minLength = 6)
+            )(User.apply)(User.unapply)
+        )
+
+        loginForm.bindFromRequest().fold(
+            //显示错误信息
+            errorForm => Ok(errorForm.errors.toString()),
+            userDate => {
+                //获取绑定成功的信息
+                val user: User = userDate
+                //显示出来
+                Ok("id=" + user.id + "&name=" + user.name)
             }
         )
     }

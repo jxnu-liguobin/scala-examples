@@ -1,5 +1,5 @@
 @(title: String)
-@*定义login函数，参数为一个title字符串*@
+    @*定义login函数，参数为一个title字符串*@
 <!DOCTYPE html>
 <html lang="en">
     <head><title>@title</title></head>
@@ -7,6 +7,14 @@
         <form action="/doLogin" method="post">
             <input name="userName" type="text" placeholder="User Name" />
             <input name="password" type="password" placeholder="Password" />
+            <button type="submit">立即登录</button>
+        </form>
+
+        <h2>使用case class 绑定表单</h2>
+
+        <form action="/doLogin2" method="post">
+            <input name="id" type="text" placeholder="User Id" />
+            <input name="name" type="text" placeholder="User Name" />
             <button type="submit">立即登录</button>
         </form>
     </body>

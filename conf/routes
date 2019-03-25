@@ -18,6 +18,8 @@ PUT           /updateUser/user                   controllers.RestfulApiControlle
 GET           /listUser                          controllers.RestfulApiController.listUser
 GET           /login                             controllers.RestfulApiController.login
 POST          /doLogin                           controllers.RestfulApiController.doLogin
++ nocsrf
+POST          /doLogin2                          controllers.RestfulApiController.doLogin2
 #不拦截url
 + nocsrf
 POST          /upload                            controllers.FileController.upload
