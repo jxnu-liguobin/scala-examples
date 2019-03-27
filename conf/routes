@@ -10,11 +10,11 @@ GET           /count                             controllers.CountController.cou
 # An example controller showing how to write asynchronous code
 GET           /message                           controllers.AsyncController.message
 #用户操作
-POST          /saveUser/user                     controllers.RestfulApiController.saveUser
+POST          /saveUser                          controllers.RestfulApiController.saveUser
 GET           /getUser                           controllers.RestfulApiController.getUser(id:Int)
 GET           /getUserByPathParam/:userId        controllers.RestfulApiController.getUserByPathParam(userId:Int)
 DELETE        /deleteUser/:id                    controllers.RestfulApiController.deleteUser(id:Int)
-PUT           /updateUser/user                   controllers.RestfulApiController.updateUser
+PUT           /updateUser                        controllers.RestfulApiController.updateUser
 GET           /listUser                          controllers.RestfulApiController.listUser
 GET           /login                             controllers.RestfulApiController.login
 + nocsrf
