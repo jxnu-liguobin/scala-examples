@@ -1,6 +1,6 @@
 package services
 
-import entity.User
+import models.User
 import play.api.libs.json.Json
 
 /**

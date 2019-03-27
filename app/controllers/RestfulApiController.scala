@@ -1,7 +1,8 @@
 package controllers
 
-import entity.User
+import models.User
 import javax.inject.{Inject, Singleton}
+import play.api.Logger
 import play.api.data.{Form, Forms}
 import play.api.i18n._
 import play.api.libs.json.{JsError, Json}
@@ -16,6 +17,8 @@ import play.api.mvc._
 @Singleton
 class RestfulApiController @Inject()(cc: ControllerComponents, langs: Langs, messagesApi: MessagesApi) extends AbstractController(cc) {
 
+    //获取指定的自己定义的打印到控制台的log实例
+    val log = Logger("access")
 
     val lang = langs.availables.head
     //使用errorsAsJson所需要的隐式provider参数
@@ -38,6 +41,9 @@ class RestfulApiController @Inject()(cc: ControllerComponents, langs: Langs, mes
      * @return
      */
     def login = Action {
+        //用的是application
+        //Logger.logger.info("用户登录")
+        log.info("用户登录")
         Ok(views.html.login("用户登录"))
     }
 
@@ -49,6 +55,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents, langs: Langs, mes
      * @return
      */
     def doLogin = Action { implicit request =>
+        log.info("表单提交动作")
         val loginForm = Form(
             Forms.tuple(
                 "userName" -> Forms.email,
@@ -112,7 +119,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents, langs: Langs, mes
      *
      * @return
      */
-    def saveUser = Action(BodyParsers.parse.json) { request =>
+    def saveUser = Action(parse.json) { request =>
         val user = request.body.validate[User]
         user.fold(
             errors => {
@@ -171,7 +178,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents, langs: Langs, mes
      *
      * @return
      */
-    def updateUser = Action(BodyParsers.parse.json) { request =>
+    def updateUser = Action(parse.json) { request =>
         val user = request.body.validate[User]
         user.fold(
             errors => {

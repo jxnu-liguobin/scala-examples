@@ -17,6 +17,7 @@ DELETE        /deleteUser/:id                    controllers.RestfulApiControlle
 PUT           /updateUser/user                   controllers.RestfulApiController.updateUser
 GET           /listUser                          controllers.RestfulApiController.listUser
 GET           /login                             controllers.RestfulApiController.login
++ nocsrf
 POST          /doLogin                           controllers.RestfulApiController.doLogin
 + nocsrf
 POST          /doLogin2                          controllers.RestfulApiController.doLogin2
@@ -25,6 +26,8 @@ POST          /doLogin2                          controllers.RestfulApiControlle
 POST          /upload                            controllers.FileController.upload
 POST          /ajaxUpload                        controllers.FileController.ajaxUpload
 GET           /toUpload                          controllers.FileController.toUpload
+#限速的异步非阻塞请求
+GET           /throttle                          controllers.AsyncController.throttledAction
 
 
 # Map static resources from the /public folder to the /assets URL path
