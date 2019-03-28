@@ -9,6 +9,8 @@ GET           /                                  controllers.HomeController.inde
 GET           /count                             controllers.CountController.count
 # An example controller showing how to write asynchronous code
 GET           /message                           controllers.AsyncController.message
+
+
 #用户操作
 POST          /saveUser                          controllers.RestfulApiController.saveUser
 GET           /getUser                           controllers.RestfulApiController.getUser(id:Int)
@@ -16,11 +18,13 @@ GET           /getUserByPathParam/:userId        controllers.RestfulApiControlle
 DELETE        /deleteUser/:id                    controllers.RestfulApiController.deleteUser(id:Int)
 PUT           /updateUser                        controllers.RestfulApiController.updateUser
 GET           /listUser                          controllers.RestfulApiController.listUser
+#表单绑定  登录
 GET           /login                             controllers.RestfulApiController.login
 + nocsrf
 POST          /doLogin                           controllers.RestfulApiController.doLogin
 + nocsrf
 POST          /doLogin2                          controllers.RestfulApiController.doLogin2
+#文件上传
 #不拦截url
 + nocsrf
 POST          /upload                            controllers.FileController.upload
@@ -28,6 +32,9 @@ POST          /ajaxUpload                        controllers.FileController.ajax
 GET           /toUpload                          controllers.FileController.toUpload
 #限速的异步非阻塞请求
 GET           /throttle                          controllers.AsyncController.throttledAction
+#获取配置文件
+GET           /getHello                          controllers.ConfigurationController.getHello
+GET           /getAppConfig                      controllers.ConfigurationController.getAppConfig
 
 
 # Map static resources from the /public folder to the /assets URL path
