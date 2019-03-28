@@ -7,9 +7,6 @@
 GET           /                                  controllers.HomeController.index
 # An example controller showing how to use dependency injection
 GET           /count                             controllers.CountController.count
-# An example controller showing how to write asynchronous code
-GET           /message                           controllers.AsyncController.message
-
 
 #用户操作
 POST          /saveUser                          controllers.RestfulApiController.saveUser
@@ -30,8 +27,10 @@ POST          /doLogin2                          controllers.RestfulApiControlle
 POST          /upload                            controllers.FileController.upload
 POST          /ajaxUpload                        controllers.FileController.ajaxUpload
 GET           /toUpload                          controllers.FileController.toUpload
-#限速的异步非阻塞请求
+#异步http
+GET           /message                           controllers.AsyncController.message
 GET           /throttle                          controllers.AsyncController.throttledAction
+GET           /asyncGetResult                    controllers.AsyncController.asyncGetResult
 #获取配置文件
 GET           /getHello                          controllers.ConfigurationController.getHello
 GET           /getAppConfig                      controllers.ConfigurationController.getAppConfig

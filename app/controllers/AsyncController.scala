@@ -1,10 +1,13 @@
 package controllers
 
+import java.util.Date
+
 import akka.actor.ActorSystem
 import akka.stream.scaladsl.{Keep, Sink, Source}
 import akka.stream.{Materializer, OverflowStrategy, ThrottleMode}
-import models.ThrottledRequest
 import javax.inject._
+import models.ThrottledRequest
+import play.api.Logger
 import play.api.mvc._
 
 import scala.concurrent.duration._
@@ -21,6 +24,9 @@ import scala.concurrent.{ExecutionContext, Future, Promise}
 class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext,
                                                                                     materializer: Materializer) extends AbstractController(cc) {
 
+    val log = Logger("access")
+
+
     /**
      * 延迟后返回纯文本消息
      *
@@ -32,11 +38,36 @@ class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSyst
 
     private def getFutureMessage(delayTime: FiniteDuration): Future[String] = {
         val promise: Promise[String] = Promise[String]()
-        //这是是柯里化函数
+        //这是柯里化函数
         actorSystem.scheduler.scheduleOnce(delayTime) {
             promise.success("Hello World!")
         }(actorSystem.dispatcher) //使用Actor运行延时任务
         promise.future
+    }
+
+
+    //在等待响应时，Web客户端将被阻塞，但服务器上不会阻塞任何东西，服务器资源可用于服务其他客户端。
+    def asyncGetResult = Action.async {
+        //        Future {
+        //getOrElse
+        Future {
+            Ok("result of blocking call" + futureResult)
+        }
+
+        //            val time = new Date()
+        //            Ok(time.toString + ",future is " + futureResult.value.getOrElse((Ok("future not complete"))))
+        //            //会提前返回
+        //        }(exec)
+    }
+
+    val futurePIValue: Future[Double] = Future {
+        Thread.sleep(20000)
+        val time = new Date()
+        log.info(s"$time, PI value computed: ${Math.PI}")
+        Math.PI
+    }
+    val futureResult: Future[Result] = futurePIValue.map { pi =>
+        Ok("PI value computed: " + pi)
     }
 
     /**
