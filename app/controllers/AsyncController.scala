@@ -31,6 +31,8 @@ class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSyst
      * 延迟后返回纯文本消息
      *
      * routes”文件中的配置意味着此方法，将在应用程序收到“get”请求调用且请求路径是“/message”的路径时被调用
+     *
+     * @return
      */
     def message = Action.async {
         getFutureMessage(1.second).map { msg => Ok(msg) }
@@ -47,6 +49,11 @@ class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSyst
 
 
     //在等待响应时，Web客户端将被阻塞，但服务器上不会阻塞任何东西，服务器资源可用于服务其他客户端。
+    /**
+     * 返回future
+     *
+     * @return
+     */
     def asyncGetResult = Action.async {
         //        Future {
         //getOrElse
@@ -60,13 +67,13 @@ class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSyst
         //        }(exec)
     }
 
-    val futurePIValue: Future[Double] = Future {
+    private val futurePIValue: Future[Double] = Future {
         Thread.sleep(20000)
         val time = new Date()
         log.info(s"$time, PI value computed: ${Math.PI}")
         Math.PI
     }
-    val futureResult: Future[Result] = futurePIValue.map { pi =>
+    private val futureResult: Future[Result] = futurePIValue.map { pi =>
         Ok("PI value computed: " + pi)
     }
 
