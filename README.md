@@ -1,8 +1,10 @@
 ### Play framework Examples with Scala
 
-> 主要概念
+>版本 
 
-目前主要Examples
+Play 2.7 Scala 2.12
+
+> 目前主要Examples
 
 * 配置API
 * 依赖注入
