@@ -10,6 +10,7 @@ import akka.actor.{Actor, Props}
  * @version 1.0, 2019-03-30
  */
 class HelloActor extends Actor {
+
     override def receive: Receive = {
         case SayHello(name: String) => {
             //回复发送者

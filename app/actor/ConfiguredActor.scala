@@ -17,7 +17,7 @@ class ConfiguredActor @Inject()(configuration: Configuration) extends Actor {
     val config = configuration.getOptional[String]("hello").getOrElse("none")
 
     //收到，并回复config
-    def receive = {
+    override def receive = {
         case GetConfig => sender() ! config
         case _ => sender() ! "Not found"
     }

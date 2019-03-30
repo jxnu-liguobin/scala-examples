@@ -28,7 +28,7 @@ class ActorController @Inject()(implicit exec: ExecutionContext, system: ActorSy
     val helloActor = system.actorOf(HelloActor.props, "hello-actor")
 
     //一个超时的隐式对象
-    implicit val timeout: Timeout = 15.seconds
+    implicit val timeout: Timeout = 5.seconds
 
     /**
      * 异步的action，使用ask模式

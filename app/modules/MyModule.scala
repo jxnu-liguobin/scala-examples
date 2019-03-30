@@ -15,6 +15,7 @@ class MyModule extends AbstractModule with AkkaGuiceSupport {
         bindActor[ConfiguredActor]("configured-actor")
         //Guice自动绑定ConfiguredChildActor.Factory，当它被实例化时，它将提供一个Configuration的实例并转换为ConfiguredChildActor
         bindActor[ParentActor]("parent-actor")
+        //子actor使用指定的工厂
         bindActorFactory[ConfiguredChildActor, ConfiguredChildActor.Factory]
 
     }
