@@ -1,6 +1,27 @@
 ### Play framework Examples with Scala
 
-A Default Play Project's Structure
+> 主要概念
+
+目前主要Examples
+
+* 控制器与路由
+* 配置API
+* 依赖注入
+* http编程
+* 异步HTTP编程
+* 表格提交和验证
+* Play-json
+* 处理文件上传
+* Akka集成
+* Csrf拦截
+* Logback日志配置
+* Scala常用算子
+
+
+PS:主要参考[官网](https://www.playframework.com/documentation/2.7.x/ScalaHome)
+
+
+> 默认的Play项目结构
 
 ```
 +---app                         Play Web 应用全部代码所在目录

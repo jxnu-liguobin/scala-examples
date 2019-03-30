@@ -34,7 +34,10 @@ GET           /asyncGetResult                    controllers.AsyncController.asy
 #获取配置文件
 GET           /getHello                          controllers.ConfigurationController.getHello
 GET           /getAppConfig                      controllers.ConfigurationController.getAppConfig
-
+#actor
+GET           /sayHello                          controllers.ActorController.sayHello(name:String)
+GET           /getConfig                         controllers.Actor2Controller.getConfig
+GET           /getChildConfig                    controllers.Actor3Controller.getChildConfig(key:String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)
