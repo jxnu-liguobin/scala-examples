@@ -2,8 +2,8 @@
 
 >版本 
 
-Play 2.7 
-Scala 2.12
+* Play 2.7 
+* Scala 2.12
 
 > 目前主要Examples
 
