@@ -21,8 +21,8 @@ import scala.concurrent.{ExecutionContext, Future, Promise}
  * @param exec        需要ExecutionContext来执行异步代码，根据需要修改依赖注入
  */
 @Singleton
-class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext,
-                                                                                    materializer: Materializer) extends AbstractController(cc) {
+class AsyncController @Inject()(implicit exec: ExecutionContext, cc: ControllerComponents, actorSystem: ActorSystem,
+                                materializer: Materializer) extends AbstractController(cc) {
 
     val log = Logger("access")
 
