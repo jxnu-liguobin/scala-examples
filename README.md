@@ -1,28 +1,26 @@
 ### Play framework Examples with Scala
 
->版本 
+> Version
 
 * Play 2.7 
 * Scala 2.12
 
-> 目前主要Examples
+> Main concepts for Scala
 
-* 配置API
-* 依赖注入
-* HTTP编程
-* 异步HTTP编程
-* 表格提交和验证
-* Play-json
-* 处理文件上传
-* Akka集成
-* Csrf拦截
-* Logback日志配置
-* Scala常用算子
-* Play+ScalaTest单元测试
-
-
-PS:主要参考[官网](https://www.playframework.com/documentation/2.7.x/ScalaHome)
-
+* Configuration API
+* HTTP programming
+* Asynchronous HTTP programming
+* Working with Json
+* Handling file upload
+* Form submission and validation
+* Integrating with Akka
+* Dependency injection
+* Testing your application
+* Logging
+* Scala Common Operators
+* CSRF configuration
+  
+PS:Reference resources [playframework](https://www.playframework.com/documentation/2.7.x/ScalaHome)
 
 > 默认的Play项目结构
 
@@ -31,19 +29,17 @@ PS:主要参考[官网](https://www.playframework.com/documentation/2.7.x/ScalaH
 
 |   +---services                业务逻辑代码所在目录
 
-|   |   Counter.scala       
-
 |   +---controllers             控制器代码所在目录
-
-|   |   HomeController.scala    默认控制器代码
 
 |   +---models                  模型实体类
 
-|   |   User  
-
 |   +---views                   视图（Play Scala HTML模板） 代码所在目录
 
-|   |   main.scala.html     
+|   +---actor                   存放actor
+
+|   +---modules                 存放自定义module，注入配置
+
+|   +---filters                 存放自定义filter
 
 +---conf                        Play 配置文件所在目录
 
@@ -71,7 +67,10 @@ PS:主要参考[官网](https://www.playframework.com/documentation/2.7.x/ScalaH
 
 |   +---stylesheets             CSS样式表文件
 
----| Module.scala               Guice注入绑定配置
+---| Module.scala               默认Guice注入绑定配置
+
++---test                        存放测试相关代码
 
 +---target                      存放编译后的可执行代码和编译时的中间代码
+
 ```
