@@ -18,9 +18,3 @@ class ExampleMockitoSpec extends PlaySpec with MockitoSugar {
         }
     }
 }
-
-trait DateService {
-    def findDate: Date
-}
-
-case class Date(date: java.util.Date)
