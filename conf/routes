@@ -38,7 +38,8 @@ GET           /getAppConfig                      controllers.ConfigurationContro
 GET           /sayHello                          controllers.ActorController.sayHello(name:String)
 GET           /getConfig                         controllers.Actor2Controller.getConfig
 GET           /getChildConfig                    controllers.Actor3Controller.getChildConfig(key:String)
-
+#数据库
+GET           /testDb                            controllers.ScalaControllerInject.testDb
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)
 

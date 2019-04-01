@@ -20,7 +20,7 @@
 * Scala Common Operators
 * CSRF configuration
   
-PS:Reference resources [playframework](https://www.playframework.com/documentation/2.7.x/ScalaHome)
+PS:Reference resources,but not all of them.[playframework](https://www.playframework.com/documentation/2.7.x/ScalaHome)
 
 > Default Play project structure
   
