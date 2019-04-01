@@ -22,8 +22,8 @@
   
 PS:Reference resources [playframework](https://www.playframework.com/documentation/2.7.x/ScalaHome)
 
-> 默认的Play项目结构
-
+> Default Play project structure
+  
 ```
 +---app                         Play Web 应用全部代码所在目录
 
