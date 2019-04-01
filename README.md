@@ -9,7 +9,7 @@
 
 * 配置API
 * 依赖注入
-* http编程
+* HTTP编程
 * 异步HTTP编程
 * 表格提交和验证
 * Play-json
@@ -18,6 +18,7 @@
 * Csrf拦截
 * Logback日志配置
 * Scala常用算子
+* Play+ScalaTest单元测试
 
 
 PS:主要参考[官网](https://www.playframework.com/documentation/2.7.x/ScalaHome)
