@@ -19,6 +19,7 @@
 * Logging
 * Scala Common Operators
 * CSRF configuration
+* MySQL connection configure 
   
 PS:Reference resources,but not all of them.[playframework](https://www.playframework.com/documentation/2.7.x/ScalaHome)
 
