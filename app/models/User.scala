@@ -8,7 +8,7 @@ import scala.util.Random
  * @author 梦境迷离
  * @version 1.0, 2019-03-15
  */
-case class User(var id: Int, var name: String) {
+case class User(var id: Int, var userName: String) {
 
     private var password: String = _
 
@@ -114,7 +114,7 @@ object User {
             u.id.equals(user.id)
         }
         if (isHas != null) {
-            user.name = "update-" + System.currentTimeMillis() + "-" + user.name
+            user.userName = "update-" + System.currentTimeMillis() + "-" + user.userName
             users = filters ::: List(user)
         } else {
             users = users ::: List(user)

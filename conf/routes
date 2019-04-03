@@ -15,33 +15,46 @@ GET           /getUserByPathParam/:userId        controllers.RestfulApiControlle
 DELETE        /deleteUser/:id                    controllers.RestfulApiController.deleteUser(id:Int)
 PUT           /updateUser                        controllers.RestfulApiController.updateUser
 GET           /listUser                          controllers.RestfulApiController.listUser
+
+
+#使用slick+mysqlcrud
+GET           /findAll                           controllers.MysqlSlickController.findAll
+POST          /insertUser                        controllers.MysqlSlickController.insertUser
+DELETE        /deleteById/:id                    controllers.MysqlSlickController.deleteById(id:Int)
+PUT           /updateUserWithSlick               controllers.MysqlSlickController.updateUserWithSlick
+GET           /findOne/:id                       controllers.MysqlSlickController.findOne(id:Int)
+
+
 #表单绑定  登录
 GET           /login                             controllers.RestfulApiController.login
 + nocsrf
 POST          /doLogin                           controllers.RestfulApiController.doLogin
 + nocsrf
 POST          /doLogin2                          controllers.RestfulApiController.doLogin2
+
 #文件上传
 #不拦截url
 + nocsrf
 POST          /upload                            controllers.FileController.upload
 POST          /ajaxUpload                        controllers.FileController.ajaxUpload
 GET           /toUpload                          controllers.FileController.toUpload
+
 #异步http
 GET           /message                           controllers.AsyncController.message
 GET           /throttle                          controllers.AsyncController.throttledAction
 GET           /asyncGetResult                    controllers.AsyncController.asyncGetResult
+
 #获取配置文件
 GET           /getHello                          controllers.ConfigurationController.getHello
 GET           /getAppConfig                      controllers.ConfigurationController.getAppConfig
+
 #actor
 GET           /sayHello                          controllers.ActorController.sayHello(name:String)
 GET           /getConfig                         controllers.Actor2Controller.getConfig
 GET           /getChildConfig                    controllers.Actor3Controller.getChildConfig(key:String)
+
 #数据库
 GET           /testDb                            controllers.ScalaControllerInject.testDb
+
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)
-
-
-      

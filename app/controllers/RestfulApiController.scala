@@ -1,7 +1,7 @@
 package controllers
 
-import models.User
 import javax.inject.{Inject, Singleton}
+import models.User
 import play.api.Logger
 import play.api.data.{Form, Forms}
 import play.api.i18n._
@@ -87,7 +87,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents, langs: Langs, mes
         val loginForm = Form(
             Forms.mapping(
                 "id" -> Forms.number,
-                "name" -> Forms.text(minLength = 6)
+                "userName" -> Forms.text(minLength = 6)
             )(User.apply)(User.unapply)
         )
 
@@ -98,7 +98,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents, langs: Langs, mes
                 //获取绑定成功的信息
                 val user: User = userDate
                 //显示出来
-                Ok("id=" + user.id + "&name=" + user.name)
+                Ok("id=" + user.id + "&userName=" + user.userName)
             }
         )
     }
@@ -115,7 +115,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents, langs: Langs, mes
 
     /**
      * POST提交，并展示所有User
-     * /saveUser/user
+     * /saveUser
      *
      * @return
      */
@@ -174,7 +174,7 @@ class RestfulApiController @Inject()(cc: ControllerComponents, langs: Langs, mes
 
     /**
      * 请求体参数
-     * /updateUser/user
+     * /updateUser
      *
      * @return
      */
