@@ -21,7 +21,7 @@
 * CSRF configuration
 * MySQL connection configure 
 * Restful `crud` based on MySQL and Slick 
-* Restful `crud` based on POstgresql and Slick 
+* Restful `crud` based on Postgresql and Slick 
   
 PS:Reference resources,but not all of them.[playframework](https://www.playframework.com/documentation/2.7.x/ScalaHome)
 
