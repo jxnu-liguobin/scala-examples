@@ -19,9 +19,10 @@
 * Logging
 * Scala Common Operators
 * CSRF configuration
-* MySQL connection configure 
+* MySQL and Postgresql connection configure 
 * Restful `crud` based on MySQL and Slick 
-* Restful `crud` based on Postgresql and Slick 
+* Restful `crud` based on Postgresql and Slick
+* Multiple data sources
   
 PS:Reference resources,but not all of them.[playframework](https://www.playframework.com/documentation/2.7.x/ScalaHome)
 
