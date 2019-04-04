@@ -1,6 +1,6 @@
-package controllers
+package controllers.mysql
 
-import dao.UserDAO
+import dao.UserMySqlDAO
 import javax.inject.{Inject, Singleton}
 import models.User
 import play.api.libs.json.{JsError, Json}
@@ -19,7 +19,7 @@ import scala.concurrent.ExecutionContext
  * @version 1.0, 2019-04-03
  */
 @Singleton
-class MysqlSlickController @Inject()(userDao: UserDAO, cc: ControllerComponents)(implicit ec: ExecutionContext)
+class MysqlSlickController @Inject()(userDao: UserMySqlDAO, cc: ControllerComponents)(implicit ec: ExecutionContext)
   extends AbstractController(cc) {
 
 
@@ -74,7 +74,7 @@ class MysqlSlickController @Inject()(userDao: UserDAO, cc: ControllerComponents)
      */
     def deleteById(id: Int) = Action.async {
         userDao.deleteUserById(id).map {
-            case count => Ok(Json.toJson("count" -> count))
+            case count => Ok(Json.obj("count" -> count))
         }
 
     }
@@ -88,7 +88,7 @@ class MysqlSlickController @Inject()(userDao: UserDAO, cc: ControllerComponents)
     def updateUserWithSlick = Action(parse.json).async { implicit request =>
         val user = request.body.validate[User]
         userDao.updateUser(user.get).map {
-            case count => Ok(Json.toJson("count" -> count))
+            case count => Ok(Json.obj("count" -> count))
         }
     }
 

@@ -10,10 +10,12 @@ import scala.concurrent.{ExecutionContext, Future}
 /**
  * User 数据库操作
  *
+ * 使用mysqldb
+ *
  * @author 梦境迷离
  * @version 1.0, 2019-04-03
  */
-class UserDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext)
+class UserMySqlDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext)
   extends HasDatabaseConfigProvider[JdbcProfile] {
 
     import profile.api._

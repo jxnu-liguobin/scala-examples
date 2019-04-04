@@ -14,8 +14,8 @@ libraryDependencies ++= Seq(ehcache, ws, specs2 % Test, guice,
     "org.scalatestplus.play" %% "scalatestplus-play" % "3.0.0" % Test,
     "mysql" % "mysql-connector-java" % "5.1.47",
     "com.typesafe.play" %% "play-slick" % "3.0.0",
-    "com.typesafe.play" %% "play-slick-evolutions" % "3.0.0"
-
+    "com.typesafe.play" %% "play-slick-evolutions" % "3.0.0",
+    "org.postgresql" % "postgresql" % "9.4.1212",
 )
 
 unmanagedResourceDirectories in Test += {
