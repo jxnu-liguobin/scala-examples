@@ -30,6 +30,14 @@ DELETE        /postgresql/deleteById/:id             controllers.postgresql.Post
 PUT           /postgresql/updateUserWithSlick        controllers.postgresql.PostgresqlSlickController.updateUserWithSlick
 GET           /postgresql/findOne/:id                controllers.postgresql.PostgresqlSlickController.findOne(id:Int)
 
+#查询
+GET           /postgresql/findAllDesc                controllers.postgresql.PostgresqlSlickController.findAllDesc
+GET           /postgresql/innerJoinSelf              controllers.postgresql.PostgresqlSlickController.innerJoinSelf
+GET           /postgresql/leftJoinSelf               controllers.postgresql.PostgresqlSlickController.leftJoinSelf
+GET           /postgresql/findAllWithPlainSql        controllers.postgresql.PostgresqlSlickController.findAllWithPlainSql
+GET           /postgresql/findGroupByUserId          controllers.postgresql.PostgresqlSlickController.findGroupByUserId
+
+
 #表单绑定  登录
 GET           /login                                 controllers.RestfulApiController.login
 + nocsrf

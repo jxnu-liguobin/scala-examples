@@ -9,11 +9,82 @@ import play.api.mvc.{AbstractController, ControllerComponents}
 import scala.concurrent.ExecutionContext
 
 /**
+ * 为了方便不使用服务层
+ * 直接调dao
+ *
  * @author 梦境迷离
  * @version 1.0, 2019-04-04
  */
 class PostgresqlSlickController @Inject()(userDao: UserPostgresqlDAO, cc: ControllerComponents)(implicit ec: ExecutionContext)
   extends AbstractController(cc) {
+
+
+    /**
+     * 查询所有用户，根据id逆序
+     *
+     * @return
+     */
+    def findAllDesc() = Action.async {
+        userDao.allDesc().map {
+            user => Ok(Json.toJson(user))
+        }
+    }
+
+
+    /**
+     * 内连接，自连接 ，a.id===b.id时，返回User(a.id,b.userName)
+     *
+     * @return
+     */
+    def innerJoinSelf() = Action.async {
+        userDao.innerJoin().map {
+            user => {
+                val users = for ((id, name) <- user) yield User(id, name)
+                Ok(Json.toJson(users))
+            }
+        }
+    }
+
+    /**
+     * 左外连接，也是自连接，返回User(a.id,b.userName)
+     *
+     * @return
+     */
+    def leftJoinSelf() = Action.async {
+        userDao.leftJoin().map {
+            user => {
+                val users = for ((id, name) <- user) yield User(id, name)
+                Ok(Json.toJson(users))
+            }
+        }
+    }
+
+    /**
+     * 使用自定义sql查询（所有用户）
+     *
+     * @return
+     */
+    def findAllWithPlainSql() = Action.async {
+        userDao.plainSql().map {
+            user => Ok(Json.toJson(user))
+        }
+    }
+
+    /**
+     * 分组查询，根据id分组（id唯一，等于查询所有，其他操作：只取id大于2的，且倒序）
+     *
+     * @return
+     */
+    def findGroupByUserId() = Action.async {
+        userDao.groupByUserId().map {
+            user => {
+                val userIds = for (id <- user) yield id
+                Ok(Json.obj("ids" -> userIds))
+            }
+        }
+    }
+
+
     /**
      * 根据路径参数查询一个单一的用户
      *
@@ -22,7 +93,7 @@ class PostgresqlSlickController @Inject()(userDao: UserPostgresqlDAO, cc: Contro
      */
     def findOne(id: Int) = Action.async {
         userDao.findById(id).map {
-            case user => Ok(Json.toJson(user))
+            user => Ok(Json.toJson(user))
         }
     }
 
@@ -33,7 +104,7 @@ class PostgresqlSlickController @Inject()(userDao: UserPostgresqlDAO, cc: Contro
      */
     def findAll = Action.async {
         userDao.all().map {
-            case user => Ok(Json.toJson(user))
+            user => Ok(Json.toJson(user))
         }
     }
 
@@ -65,7 +136,7 @@ class PostgresqlSlickController @Inject()(userDao: UserPostgresqlDAO, cc: Contro
      */
     def deleteById(id: Int) = Action.async {
         userDao.deleteUserById(id).map {
-            case count => Ok(Json.obj("count" -> count))
+            count => Ok(Json.obj("count" -> count))
         }
 
     }
@@ -79,7 +150,7 @@ class PostgresqlSlickController @Inject()(userDao: UserPostgresqlDAO, cc: Contro
     def updateUserWithSlick = Action(parse.json).async { implicit request =>
         val user = request.body.validate[User]
         userDao.updateUser(user.get).map {
-            case count => Ok(Json.obj("count" -> count))
+            count => Ok(Json.obj("count" -> count))
         }
     }
 }

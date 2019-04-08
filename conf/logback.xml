@@ -20,9 +20,9 @@
     </appender>
 
     <logger name="play" level="INFO"/>
-    <logger name="org.jdbcdslog.ConnectionLogger" level="OFF"/> <!-- Won' log connections -->
+    <logger name="org.jdbcdslog.ConnectionLogger" level="INFO"/> <!-- Won' log connections -->
     <logger name="org.jdbcdslog.StatementLogger" level="INFO"/> <!-- Will log all statements -->
-    <logger name="org.jdbcdslog.ResultSetLogger" level="OFF"/> <!-- Won' log result sets -->
+    <logger name="org.jdbcdslog.ResultSetLogger" level="INFO"/> <!-- Won' log result sets -->
 
     <!--确保访问日志数据只进入访问日志文件-->
     <logger name="access" level="INFO" additivity="false">
