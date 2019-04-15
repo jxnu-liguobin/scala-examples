@@ -1,6 +1,6 @@
 package controllers
 
-import javax.inject.Inject
+import javax.inject.{Inject, Singleton}
 import models.AppConfig
 import play.api.Configuration
 import play.api.libs.json.Json
@@ -10,6 +10,7 @@ import play.api.mvc.{AbstractController, ControllerComponents}
  * @author 梦境迷离
  * @version 1.0, 2019-03-28
  */
+@Singleton
 class ConfigurationController @Inject()(config: Configuration, c: ControllerComponents) extends AbstractController(c) {
 
 
