@@ -2,8 +2,10 @@ language: scala
 scala:
    - 2.12.2
 script:
- - sbt clean coverage test coverageReport
-
+   - sbt clean coverage test coverageReport
 after_success:
- - bash <(curl -s https://codecov.io/bash) -t "76215683-f990-45f3-8f39-dd1f42d3e733"
-
+   - bash <(curl -s https://codecov.io/bash) -t "76215683-f990-45f3-8f39-dd1f42d3e733"
+jdk:
+   - oraclejdk8
+coverageEnabled:
+   - true
