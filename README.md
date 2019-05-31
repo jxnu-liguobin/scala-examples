@@ -1,7 +1,10 @@
 Play framework Examples with Scala
 
 [![Build Status](https://travis-ci.org/jxnu-liguobin/scala-play-learn.svg?branch=master)](https://travis-ci.org/jxnu-liguobin/scala-play-learn)
-[![codecov](https://codecov.io/gh/jxnu-liguobin/scala-play-learn/branch/master/graph/badge.svg)](https://codecov.io/gh/jxnu-liguobin/scala-play-learn)
+![GitHub top language](https://img.shields.io/github/languages/top/jxnu-liguobin/scala-play-learn.svg)
+![GitHub stars](https://img.shields.io/github/stars/jxnu-liguobin/scala-play-learn.svg)
+![GitHub forks](https://img.shields.io/github/forks/jxnu-liguobin/scala-play-learn.svg)
+![GitHub followers](https://img.shields.io/github/followers/jxnu-liguobin.svg)
 ---
 
 > * Version
