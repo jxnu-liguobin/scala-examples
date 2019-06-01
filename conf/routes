@@ -1,0 +1,72 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET           /                                      controllers.HomeController.index
+# An example controller showing how to use dependency injection
+GET           /count                                 controllers.CountController.count
+
+#用户操作
+POST          /saveUser                              controllers.RestfulApiController.saveUser
+GET           /getUser                               controllers.RestfulApiController.getUser(id:Int)
+GET           /getUserByPathParam/:userId            controllers.RestfulApiController.getUserByPathParam(userId:Int)
+DELETE        /deleteUser/:id                        controllers.RestfulApiController.deleteUser(id:Int)
+PUT           /updateUser                            controllers.RestfulApiController.updateUser
+GET           /listUser                              controllers.RestfulApiController.listUser
+
+
+#使用slick+mysqlcrud
+GET           /mysql/findAll                         controllers.mysql.MysqlSlickController.findAll
+POST          /mysql/insertUser                      controllers.mysql.MysqlSlickController.insertUser
+DELETE        /mysql/deleteById/:id                  controllers.mysql.MysqlSlickController.deleteById(id:Int)
+PUT           /mysql/updateUserWithSlick             controllers.mysql.MysqlSlickController.updateUserWithSlick
+GET           /mysql/findOne/:id                     controllers.mysql.MysqlSlickController.findOne(id:Int)
+#使用slick+postgresql db
+GET           /postgresql/findAll                    controllers.postgresql.PostgresqlSlickController.findAll
+POST          /postgresql/insertUser                 controllers.postgresql.PostgresqlSlickController.insertUser
+DELETE        /postgresql/deleteById/:id             controllers.postgresql.PostgresqlSlickController.deleteById(id:Int)
+PUT           /postgresql/updateUserWithSlick        controllers.postgresql.PostgresqlSlickController.updateUserWithSlick
+GET           /postgresql/findOne/:id                controllers.postgresql.PostgresqlSlickController.findOne(id:Int)
+
+#查询
+GET           /postgresql/findAllDesc                controllers.postgresql.PostgresqlSlickController.findAllDesc
+GET           /postgresql/innerJoinSelf              controllers.postgresql.PostgresqlSlickController.innerJoinSelf
+GET           /postgresql/leftJoinSelf               controllers.postgresql.PostgresqlSlickController.leftJoinSelf
+GET           /postgresql/findAllWithPlainSql        controllers.postgresql.PostgresqlSlickController.findAllWithPlainSql
+GET           /postgresql/findGroupByUserId          controllers.postgresql.PostgresqlSlickController.findGroupByUserId
+
+
+#表单绑定  登录
+GET           /login                                 controllers.RestfulApiController.login
++ nocsrf
+POST          /doLogin                               controllers.RestfulApiController.doLogin
++ nocsrf
+POST          /doLogin2                              controllers.RestfulApiController.doLogin2
+
+#文件上传
+#不拦截url
++ nocsrf
+POST          /upload                                controllers.FileController.upload
+POST          /ajaxUpload                            controllers.FileController.ajaxUpload
+GET           /toUpload                              controllers.FileController.toUpload
+
+#异步http
+GET           /message                               controllers.AsyncController.message
+GET           /throttle                              controllers.AsyncController.throttledAction
+GET           /asyncGetResult                        controllers.AsyncController.asyncGetResult
+
+#获取配置文件
+GET           /getHello                              controllers.ConfigurationController.getHello
+GET           /getAppConfig                          controllers.ConfigurationController.getAppConfig
+
+#actor
+GET           /sayHello                              controllers.ActorController.sayHello(name:String)
+GET           /getConfig                             controllers.Actor2Controller.getConfig
+GET           /getChildConfig                        controllers.Actor3Controller.getChildConfig(key:String)
+
+#数据库
+GET           /testDb                                controllers.ScalaControllerInject.testDb
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                          controllers.Assets.versioned(path="/public", file: Asset)

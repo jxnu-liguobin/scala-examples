@@ -1,0 +1,38 @@
+<configuration>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${application.home:-.}/logs/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Daily rollover with compression -->
+            <fileNamePattern>${application.home:-.}/logs/application-log-%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss ZZZZ} [%level] from %logger in %thread - %message%n%xException</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss ZZZZ} [%level] from %logger in %thread - %message%n%xException</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="play" level="INFO"/>
+    <logger name="org.jdbcdslog.ConnectionLogger" level="INFO"/> <!-- Won' log connections -->
+    <logger name="org.jdbcdslog.StatementLogger" level="INFO"/> <!-- Will log all statements -->
+    <logger name="org.jdbcdslog.ResultSetLogger" level="INFO"/> <!-- Won' log result sets -->
+
+    <!--确保访问日志数据只进入访问日志文件-->
+    <logger name="access" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    <!--将STDOUT日志追加到控制台INFO中-->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+</configuration>

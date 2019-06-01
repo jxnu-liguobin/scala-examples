@@ -1,0 +1,42 @@
+@(title: String)
+<!DOCTYPE html>
+<html>
+    <head><title>@title</title></head>
+    <body>
+        <h1>普通的文件上传</h1>
+        <form action="/upload" id="formData" method="post" enctype="multipart/form-data">
+            <input type="file" name="file"/>
+            <input type="submit" value="上传文件"/>
+        </form>
+
+        <h1>使用Ajax的文件上传</h1>
+        <form action="" id="formData" enctype="multipart/form-data">
+            <input type="file" name="file" id="file">
+            <input type="button" value="上传文件" id="upload">
+        </form>
+    </body>
+</html>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+        $(document).on('click', "#upload", function () {
+            var formData = new FormData($("#formData")[0]);
+            console.log($('#file').get(0).files[0]);
+            formData.append("file", $('#file').get(0).files[0])
+            $.ajax({
+                url: '/ajaxUpload',
+                type: 'post',
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                data: formData,
+                success: function (data) {
+                    console.info(data)
+                },
+                error: function (data) {
+                    console.log(data)
+                }
+            });
+        });
+</script>
