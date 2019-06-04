@@ -1,5 +1,5 @@
 name := "scala_micro_service"
-
+organization := "io.growing"
 version := "1.0"
 
 lazy val `scala_micro_service` = (project in file(".")).enablePlugins(PlayScala)
@@ -17,7 +17,6 @@ libraryDependencies ++= Seq(ehcache, ws, specs2 % Test, guice,
     "com.typesafe.play" %% "play-slick-evolutions" % "3.0.0",
     "org.postgresql" % "postgresql" % "9.4.1212",
 )
-
 unmanagedResourceDirectories in Test += {
     baseDirectory(_ / "target/web/public/test").value
 }
