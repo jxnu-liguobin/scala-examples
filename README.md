@@ -6,7 +6,6 @@
 [![Build Status](https://travis-ci.org/jxnu-liguobin/scala_micro_service.svg?branch=master)](https://travis-ci.org/jxnu-liguobin/scala_micro_service)
 ![GitHub](https://img.shields.io/github/license/jxnu-liguobin/scala_micro_service.svg)
 ![GitHub top language](https://img.shields.io/github/languages/top/jxnu-liguobin/scala_micro_service.svg)
-![GitHub followers](https://img.shields.io/github/followers/jxnu-liguobin.svg)
 
 Playframework Examples with Scala
 ---
