@@ -1,0 +1,25 @@
+package io.growing.config
+
+import com.typesafe.config.ConfigFactory
+
+/**
+ * 配置文件
+ *
+ * @author 梦境迷离
+ * @since 2019-08-05
+ * @version v2.0
+ */
+object ConfigLoader {
+
+
+  private final lazy val config = ConfigFactory.load("application.conf")
+  private final lazy val configWrapper = ConfigConversions.ConfigWrapper(config)
+
+  def getStringValue(key: String) = configWrapper.getStringOpt(key)
+
+  def getIntValue(key: String) = configWrapper.getIntOpt(key)
+
+  def getSeqValue(key: String) = configWrapper.getStringSeqOpt(key)
+
+  def getConfig = config
+}
