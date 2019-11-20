@@ -13,5 +13,4 @@ Note is in Chinese
 * Scala 2.12.x
 
 [![Build Status](https://travis-ci.org/jxnu-liguobin/scala-examples.svg?branch=master)](https://travis-ci.org/jxnu-liguobin/scala-examples)
-![GitHub](https://img.shields.io/github/license/jxnu-liguobin/scala-examples.svg)
 ![GitHub top language](https://img.shields.io/github/languages/top/jxnu-liguobin/scala-examples.svg)
