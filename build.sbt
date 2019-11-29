@@ -4,10 +4,13 @@ version := "1.0"
 
 //级联编译，无其他关联
 lazy val `scala-examples` = Project(id = "scala-examples", base = file(".")).enablePlugins(PlayScala).aggregate(
-  `scala-akka`, `scala-other`
+  `scala-akka-type`, `scala-akka-classic`
 )
 
-lazy val `scala-akka` = Project(id = "scala-akka", base = file("scala-akka"))
+lazy val `scala-akka-classic` = Project(id = "scala-akka-classic", base = file("scala-akka-classic"))
+
+lazy val `scala-akka-type` = Project(id = "scala-akka-type", base = file("scala-akka-type"))
+
 
 lazy val `scala-other` = Project(id = "scala-other", base = file("scala-other"))
 

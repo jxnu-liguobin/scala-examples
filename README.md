@@ -1,7 +1,8 @@
 # scala examples
 
  - play examples in app
- - akka examples in scala-akka
+ - akka classic actor examples in scala-akka-classic
+ - akka type actor examples in scala-akka-type
  - other examples in scala-other
  
 All modules are not associated, It only needs run ```sbt compile``` in the root project.
