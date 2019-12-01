@@ -16,7 +16,7 @@ import scala.concurrent.Future
  * @since 2019-11-17
  * @version v1.0
  */
-object Server_2 extends App {
+object WebServer_2 extends App {
 
   implicit val system = ActorSystem()
   implicit val materializer = ActorMaterializer()

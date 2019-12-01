@@ -9,7 +9,7 @@ import akka.stream.scaladsl.Sink
  * @since 2019-11-17
  * @version v1.0
  */
-object Server_3 extends App {
+object WebServer_3 extends App {
 
   import akka.actor.ActorSystem
   import akka.http.scaladsl.Http

@@ -10,11 +10,12 @@ import scala.concurrent.Future
 /**
  * 在最基本的级别上，通过调用akka.http.scaladsl.Http的bind方法来绑定Akka HTTP服务器
  *
+ * @see https://doc.akka.io/docs/akka-http/current/server-side/index.html
  * @author 梦境迷离
  * @since 2019-11-17
  * @version v1.0
  */
-object Server_1 extends App {
+object WebServer_1 extends App {
 
   implicit val system = ActorSystem()
   implicit val materializer = ActorMaterializer()

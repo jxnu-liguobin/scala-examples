@@ -15,7 +15,7 @@ import akka.stream.scaladsl.Flow
  * @since 2019-11-17
  * @version v1.0
  */
-object Server_5 extends App {
+object WebServer_5 extends App {
 
   implicit val system = ActorSystem()
   implicit val materializer = ActorMaterializer()

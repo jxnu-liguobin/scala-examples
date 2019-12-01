@@ -1,4 +1,4 @@
-package io.github.dreamylost.actor.http.introduction
+package io.github.dreamylost.actor.http.client
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
@@ -11,8 +11,7 @@ import scala.util.{ Failure, Success }
 /**
  * HTTP client API
  *
- * The client APIs provide methods for calling a HTTP server using the same HttpRequest and HttpResponse abstractions that Akka HTTP server uses
- * but adds the concept of connection pools to allow multiple requests to the same server to be handled more performantly by re-using TCP connections to the server.
+ * @see https://doc.akka.io/docs/akka-http/current/client-side/index.html
  */
 object WebClient_1 {
 
@@ -23,6 +22,7 @@ object WebClient_1 {
 
     //通过重用TCP连接来更有效地处理对同一服务器的多个请求
     //可以配置连接池、日志
+    //这是request级别的客户端API，还有host和connection级
     val responseFuture: Future[HttpResponse] = Http().singleRequest(HttpRequest(uri = "http://akka.io"))
     responseFuture
       .onComplete {
