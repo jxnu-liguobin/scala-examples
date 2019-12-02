@@ -3,6 +3,8 @@ package action
 import com.google.common.net.HttpHeaders
 import com.typesafe.scalalogging.LazyLogging
 import models.User
+import play.api.http.Writeable
+import play.api.libs.json.{ Json, Writes }
 import play.api.mvc._
 
 import scala.concurrent.{ ExecutionContext, Future }
@@ -12,7 +14,7 @@ import scala.concurrent.{ ExecutionContext, Future }
  * @author liguobin@growingio.com
  * @version 1.0,2019/12/2
  */
-class ActionComponent()(implicit ce: ExecutionContext, cc: ControllerComponents) extends BaseController with LazyLogging {
+class ComponentsController()(implicit ce: ExecutionContext, cc: ControllerComponents) extends BaseController with LazyLogging {
 
   //携带用户信息的请求
   class UserRequest[A](val user: User, request: Request[A]) extends WrappedRequest[A](request) {
@@ -69,5 +71,13 @@ class ActionComponent()(implicit ce: ExecutionContext, cc: ControllerComponents)
   }
 
   protected def controllerComponents: ControllerComponents = cc
+
+  implicit def writeableOf_caseClass[T <: Product](implicit codec: Codec, tjs: Writes[T]): Writeable[T] = {
+    Writeable(a => codec.encode(Json.stringify(Json.toJson(a))), Some("application/json"))
+  }
+
+  implicit def writeableOf_seqOfCaseClass[T <: Product](implicit codec: Codec, tjs: Writes[T]): Writeable[Seq[T]] = {
+    Writeable(a => codec.encode(Json.stringify(Json.toJson(a))), Some("application/json"))
+  }
 
 }
