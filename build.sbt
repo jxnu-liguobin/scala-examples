@@ -28,7 +28,8 @@ libraryDependencies ++= Seq(ehcache, ws, specs2 % Test, guice,
   "org.postgresql" % "postgresql" % "9.4.1212",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
   "com.typesafe.akka" %% "akka-http" % "10.1.10",
-  "com.typesafe.akka" %% "akka-actor" % "2.5.23"
+  "com.typesafe.akka" %% "akka-actor" % "2.5.23",
+  "com.typesafe.akka" %% "akka-slf4j" % "2.5.23"
 )
 unmanagedResourceDirectories in Test += {
   baseDirectory(_ / "target/web/public/test").value

@@ -24,6 +24,7 @@ object AkkaHttpWebsocketHandler1 extends App {
   //收到websocket消息后，在前面追加Hello，并响应客户端
   val greeterWebSocketService =
     Flow[Message].mapConcat {
+      //根据Reactive Streams规范，返回的“Iterable”不能包含“null”值，因为它们作为流元素是非法的。
       case tm: TextMessage => TextMessage(Source.single("Hello ") ++ tm.textStream) :: Nil
       case bm: BinaryMessage =>
         bm.dataStream.runWith(Sink.ignore)
