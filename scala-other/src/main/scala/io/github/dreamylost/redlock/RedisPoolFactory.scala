@@ -1,7 +1,6 @@
 package io.github.dreamylost.redlock
 
 import io.github.dreamylost.config.RedisConfig
-import io.growing.config.RedisConfig
 import org.redisson.Redisson
 import org.redisson.config.Config
 
