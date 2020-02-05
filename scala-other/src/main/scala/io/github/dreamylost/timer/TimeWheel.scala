@@ -1,9 +1,9 @@
-package io.github.dreamylost.wheel
+package io.github.dreamylost.timer
 
 import java.util
+import java.util.concurrent.{ ConcurrentHashMap, CopyOnWriteArrayList, TimeUnit }
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.locks.ReentrantReadWriteLock
-import java.util.concurrent.{ ConcurrentHashMap, CopyOnWriteArrayList, TimeUnit }
 
 import scala.collection.JavaConverters._
 

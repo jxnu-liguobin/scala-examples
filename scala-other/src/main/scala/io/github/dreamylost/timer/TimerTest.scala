@@ -1,4 +1,4 @@
-package io.github.dreamylost.schedule
+package io.github.dreamylost.timer
 
 import akka.actor.{ Actor, ActorSystem, Props, Timers }
 
@@ -12,7 +12,7 @@ import scala.concurrent.duration._
  * @since 2020-01-30
  * @version v1.0
  */
-object TimerScheduler extends App {
+object TimerTest extends App {
 
   object MyActor {
 
