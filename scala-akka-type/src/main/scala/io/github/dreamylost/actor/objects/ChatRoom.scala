@@ -1,4 +1,4 @@
-package io.github.dreamylost.actor.`object`
+package io.github.dreamylost.actor.objects
 
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets

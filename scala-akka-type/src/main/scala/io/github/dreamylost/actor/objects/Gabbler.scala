@@ -1,8 +1,8 @@
-package io.github.dreamylost.actor.`object`
+package io.github.dreamylost.actor.objects
 
 import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.Behaviors
-import io.github.dreamylost.actor.`object`.ChatRoom._
+import io.github.dreamylost.actor.objects.ChatRoom._
 
 /**
  * 使用聊天室的客户端
@@ -13,6 +13,7 @@ import io.github.dreamylost.actor.`object`.ChatRoom._
  * @version v1.0
  */
 object Gabbler {
+
 
   def apply(): Behavior[SessionEvent] =
     Behaviors.setup { context =>
