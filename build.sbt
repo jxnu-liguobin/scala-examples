@@ -11,6 +11,7 @@ lazy val `scala-akka-classic` = Project(id = "scala-akka-classic", base = file("
 
 lazy val `scala-akka-type` = Project(id = "scala-akka-type", base = file("scala-akka-type"))
 
+lazy val `scala-sbt-plugin` = Project(id = "scala-sbt-plugin", base = file("scala-sbt-plugin"))
 
 lazy val `scala-other` = Project(id = "scala-other", base = file("scala-other"))
 
