@@ -19,5 +19,6 @@ libraryDependencies ++= Seq(
   "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.11.1",
   "org.redisson" % "redisson" % "3.10.7",
   "com.typesafe" % "config" % "1.3.4",
-  "com.typesafe.akka" %% "akka-actor" % "2.5.23"
+  "com.typesafe.akka" %% "akka-actor" % "2.5.23",
+  "dev.zio" %% "zio" % "1.0.4-2"
 )
